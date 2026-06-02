@@ -1,109 +1,263 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Herman Miller - Premium Seating</title>
+    
+    <!-- GSAP 라이브러리 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- 구글 웹폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
-      body {
+      * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      .inner {
-        height: 646px;
-        width: 1100px;
-        margin: 0 auto;
-        background-color: skyblue;
-        position: relative;
-      }
-      .visual {
-        background-image: url(./images/visual_bg.jpg);
-      }
-      .visual .title {
-        position: absolute;
-        top: 88px;
-        left: -10px;
-      }
-      .visual .pcup1 {
-        position: absolute;
-        bottom: 0px;
-        right: -47px;
-        background-color: orange;
+      body {
+        background-color: #f5f5f7;
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #1d1d1f;
+        overflow-x: hidden;
       }
 
-      .visual .pcup1.text {
-        position: absolute;
-        top: -30px;
-        right: 220px;
+      .visual {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #ebebeb;
       }
-      .visual .pcup2 {
-        position: absolute;
-        bottom: 0px;
-        right: 162px;
-        background-color: greenyellow;
+
+      .inner {
+        width: 1200px;
+        height: 700px;
+        position: relative;
       }
-      .visual .pspoon {
+
+      .visual .brand-title {
         position: absolute;
-        bottom: 0px;
-        right: 330px;
-        background-color: yellow;
+        top: 120px;
+        left: 50px;
+        z-index: 10;
+      }
+      .visual .brand-title h2 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 5rem;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        color: #111;
+      }
+      .visual .brand-title p {
+        font-size: 1.1rem;
+        font-weight: 300;
+        margin-top: 20px;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      /* 이미지 공통 스타일 */
+      .visual .chair-main img,
+      .visual .chair-sub img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; 
+      }
+
+      /* 의자 기본 배치 */
+      .visual .chair-main {
+        position: absolute;
+        bottom: 80px;  
+        right: -80px;
+        z-index: 3;
+        width: 600px;
+        height: 580px; 
+        cursor: pointer;
+      }
+
+      .visual .chair-sub {
+        position: absolute;
+        bottom: 120px; 
+        right: 340px; 
+        z-index: 2;
+        width: 300px;
+        height: 380px;
+        cursor: pointer;
+      }
+
+      .visual .product-badge {
+        position: absolute;
+        bottom: 220px; 
+        left: 50px;
+        z-index: 4;
+        border-left: 3px solid #ff4500;
+        padding-left: 15px;
+      }
+      .visual .product-badge .model-name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #111;
+      }
+      .visual .product-badge .model-desc {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 5px;
       }
     </style>
   </head>
   <body>
+
     <section class="visual">
       <div class="inner">
-        <div
-          class="title fade-in"
-          style="
-            translate: none;
-            rotate: none;
-            scale: none;
-            opacity: 1;
-            transform: translate(0px, 0px);
-          "
-        >
-          <img src="./images/visual_title.png" alt="" />
+        
+        <div class="brand-title fade-in">
+          <h2>Aeron®<br>Chairs</h2>
+          <p>인간공학적 디자인의 정점.<br>당신의 몰입을 위한 허먼밀러의 시그니처.</p>
         </div>
-        <div
-          class="pcup1 fade-in"
-          style="
-            translate: none;
-            rotate: none;
-            scale: none;
-            opacity: 1;
-            transform: translate(0px, 0px);
-          "
-        >
-          <img src="./images/visual_cup1.png" alt="" class="cup1 image" />
-          <img src="./images/visual_cup1_text.png" alt="" class="cup1 text" />
+        
+      
+        <div class="chair-sub fade-in" id="chairSub">
+          <img src="./images/Black.webp" alt="Eames Shell Chair" />
         </div>
-        <div
-          class="pcup2 fade-in"
-          style="
-            translate: none;
-            rotate: none;
-            scale: none;
-            opacity: 1;
-            transform: translate(0px, 0px);
-          "
-        >
-          <img src="./images/visual_cup2.png" alt="" />
-          <img src="./images/visual_cup2_text.png" alt="" />
+
+        <div class="chair-main fade-in" id="chairMain">
+          <img src="./images/Red.webp" alt="Aeron Chair" />
         </div>
-        <div class="pspoon fade-in">
-          <img src="./images/visual_spoon.png" alt="" />1
+        
+        <div class="product-badge fade-in">
+          <div class="model-name" id="modelName">Aeron Onyx Ultra-Matte</div>
+          <div class="model-desc" id="modelDesc">지속 가능한 재료로 재탄생한 마스터피스</div>
         </div>
+        
       </div>
     </section>
+
     <script>
+      // 1. 초기 로드 시 페이드인 애니메이션
       const fadeEls = document.querySelectorAll(".visual .fade-in");
       gsap.from(fadeEls, {
-        duration: 2,
-        scale: 0.3,
-        ease: "none",
+        duration: 1.8,
         opacity: 0,
-        stagger: 0.7,
+        y: 40,
+        ease: "power3.out",
+        stagger: 0.4,
       });
+
+      // 2. 요소 선택 및 상태 데이터 설정
+      const chairMain = document.getElementById('chairMain');
+      const chairSub = document.getElementById('chairSub');
+      const modelName = document.getElementById('modelName');
+      const modelDesc = document.getElementById('modelDesc');
+
+      const productData = {
+        red: {
+          name: "Aeron Onyx Ultra-Matte",
+          desc: "지속 가능한 재료로 재탄생한 마스터피스"
+        },
+        black: {
+          name: "Eames Shell Chair",
+          desc: "시대를 초월한 찰스 & 레이 임스의 메탈릭 에디션"
+        }
+      };
+
+      let currentMain = "red"; // 현재 메인 자리에 어떤 의자가 있는지 체크
+
+      // 3. 서브 의자(Black) 클릭 이벤트 (앞으로 튀어나오며 메인이 됨)
+      chairSub.addEventListener('click', () => {
+        if (currentMain === "red") {
+          
+          // z-index 우선순위를 자바스크립트로 명확히 즉시 지정
+          chairSub.style.zIndex = "4";
+          chairMain.style.zIndex = "2";
+
+          // 서브(Black) -> 메인 자리 크기로 확대
+          gsap.to(chairSub, {
+            duration: 1,
+            width: 600,
+            height: 580,
+            right: -80,
+            bottom: 80,
+            ease: "power3.inOut"
+          });
+
+          // 메인(Red) -> 서브 자리 크기로 축소
+          gsap.to(chairMain, {
+            duration: 1,
+            width: 300,
+            height: 380,
+            right: 340,
+            bottom: 120,
+            ease: "power3.inOut"
+          });
+
+          // 텍스트 자연스럽게 교체
+          gsap.to([modelName, modelDesc], {
+            duration: 0.3,
+            opacity: 0,
+            y: -10,
+            onComplete: () => {
+              modelName.innerText = productData.black.name;
+              modelDesc.innerText = productData.black.desc;
+              gsap.to([modelName, modelDesc], { duration: 0.5, opacity: 1, y: 0, ease: "power2.out" });
+            }
+          });
+
+          currentMain = "black";
+        }
+      });
+
+      // 4. 메인이 된 서브 의자(Black) 혹은 뒤로 간 메인의자(Red)를 눌러 원래대로 원상복구
+      // 사용자가 어떤 의자를 누르든 메인이 Black일 때 누르면 원상 복구되도록 세팅합니다.
+      const resetToDefault = () => {
+        if (currentMain === "black") {
+          
+          chairMain.style.zIndex = "4";
+          chairSub.style.zIndex = "2";
+
+          gsap.to(chairMain, {
+            duration: 1,
+            width: 600,
+            height: 580,
+            right: -80,
+            bottom: 80,
+            ease: "power3.inOut"
+          });
+
+          gsap.to(chairSub, {
+            duration: 1,
+            width: 300,
+            height: 380,
+            right: 340,
+            bottom: 120,
+            ease: "power3.inOut"
+          });
+
+          gsap.to([modelName, modelDesc], {
+            duration: 0.3,
+            opacity: 0,
+            y: -10,
+            onComplete: () => {
+              modelName.innerText = productData.red.name;
+              modelDesc.innerText = productData.red.desc;
+              gsap.to([modelName, modelDesc], { duration: 0.5, opacity: 1, y: 0, ease: "power2.out" });
+            }
+          });
+
+          currentMain = "red";
+        }
+      };
+
+      // 두 의자 어디든 누르면 복구 가능하게 이벤트 바인딩
+      chairMain.addEventListener('click', resetToDefault);
     </script>
   </body>
 </html>
